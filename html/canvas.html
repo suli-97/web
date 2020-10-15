@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>canvas</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400" style="background-color: lightgray;"></canvas>
+    <script>
+        var c = document.getElementById("canvas");
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = "#FF0000";
+        ctx.fillRect(0,0,150,75);
+        ctx.moveTo(200,200);
+        ctx.lineTo(300,300);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(250,250,50*Math.sqrt(2),0,2*Math.PI);
+        ctx.strokeStyle="#0f0";
+        ctx.stroke();
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "#0f0";
+        ctx.fillText("2",0,25);
+        ctx.fillText("4",100,100);
+        ctx.fillText("8",200,200);
+        ctx.fillText("16",300,300);
+    </script>
+</body>
+</html>

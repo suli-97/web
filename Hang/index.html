@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hangman</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Hangman</h1>
+        <p>Find the hidden word - Enter a letter</p>
+        <canvas id="canvas" width="200px" height="250px"></canvas>
+        <div class="wrongblock">
+            <div>Wrong</div>
+            <div class="worngA" id="wrong"></div>
+        </div>
+        <div class="word" id="word">
+        </div>
+        
+        <div class="container" id="container">
+            <div class="dialog">
+                <h2 id="dialogText">Congratulations! You won! 😃</h2>
+                <button id="replay">Play Again</button>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

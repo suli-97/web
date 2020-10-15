@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+function loadXMLDoc()
+{
+	fetch("https://randomuser.me/api/")
+		.then(data=>data.json())
+		.then(function(x){
+			document.getElementById("myDiv").innerHTML = x.results[0].name.first+" "+x.results[0].name.last;
+		})
+	console.log(1);
+}
+</script>
+</head>
+<body>
+
+<h2>AJAX</h2>
+<button type="button" onclick="loadXMLDoc()">请求数据</button>
+<div id="myDiv"></div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <script>
+            var ctx=document.getElementById("canvas").getContext('2d');
+            ctx.beginPath();
+            ctx.strokeStyle="red";
+            ctx.moveTo(20,100);
+            ctx.lineTo(100,100);
+            ctx.closePath();
+            ctx.stroke();
+        </script>
+    </body>
+</html>

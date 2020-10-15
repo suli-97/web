@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div id="i1"></div>
+    <script>
+        var x=document.getElementById("i1");
+        document.onkeydown = function(event){
+            switch(event.keyCode){
+                case 37:
+                    x.innerHTML+="←";
+                    break;
+                case 38:
+                    x.innerHTML+="↑";
+                    break;
+                case 39:
+                    x.innerHTML+="→";
+                    break;
+                case 40:
+                    x.innerHTML+="↓";
+                    break;
+            }
+        }
+    </script>
+</body>    
+</html>

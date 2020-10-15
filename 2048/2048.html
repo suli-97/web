@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2048</title>
+<style>
+    h1{
+        text-align:center;
+    }
+    canvas{
+        background-color:#bbada0;
+        margin:0 auto;
+        display:block;
+        border-radius:10px;
+        text-align:center;
+    }
+</style>
+</head>
+<body>
+    <h1 id="score">Score:0</h1>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+        /** @type {HTMLCanvasElement} */ 
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext('2d');
+        var map = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+        var num_color = {0:"#ccc0b3",2:"#eee4da",4:"#ede0c8",8:"#f2b179",16:"#f59563",32:"#f67c5f",64:"#ec6544",128:"#e44d29",256:"#edcf72",512:"#c8a145",1024:"#a8832b",2048:"#86aa9c"};
+        var num_size = {0:"60",2:"60",4:"60",8:"60",16:"60",32:"60",64:"60",128:"50",256:"50",512:"50",1024:"40",2048:"40"};
+        var zeros=16,score=0;
+        function draw(){
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            for(let i=0;i<4;i++){
+                for(let j=0;j<4;j++){
+                    var num = map[i][j];
+                    ctx.fillStyle = num_color[num];
+                    ctx.fillRect(20+j*120,20+i*120,100,100);
+                    if(num!=0){
+                        ctx.fillStyle = num<=4?"#776e55":"white";
+                        ctx.font = "bold "+num_size[num]+"px Arial, Microsoft Yahei";
+                        ctx.fillText(num,70+j*120,70+i*120);
+                    }
+                }
+            }
+        }
+        function generate(){
+            var cot = ~~(Math.random()*zeros);
+            var k = 0;
+            for(let i=0;i<4;i++){
+                for(let j=0;j<4;j++){
+                    if(map[i][j]==0){
+                        if(cot==k)
+                            map[i][j]=2;
+                        k+=1;
+                    }
+                }
+            }
+            zeros--;
+            zeros=Math.max(zeros,0);
+        }
+        function up(){
+            for(let j=0;j<4;j++){
+                var last = 0;
+                var i=0;
+                var index=-1;
+                while(i<4 && map[i][j]==0)
+                    i++;
+                while(i<4){
+                    if(map[i][j]==last){
+                        map[index][j]=2*map[i][j];
+                        last=0;
+                        zeros++;
+                        score+=map[index][j];
+                    }else{
+                        map[++index][j] = map[i][j];
+                        last = map[i][j];
+                    }
+                    i++;
+                    while(i<4 && map[i][j]==0)
+                        i++;
+                }
+                for(let k=index+1;k<4;k++)
+                    map[k][j] = 0;
+            }
+        }
+        function down(){
+            for(let j=0;j<4;j++){
+                var last = 0;
+                var i=3;
+                var index=4;
+                while(i>=0 && map[i][j]==0)
+                    i--;
+                while(i>=0){
+                    if(map[i][j]==last){
+                        map[index][j]=2*map[i][j];
+                        last=0;
+                        zeros++;
+                        score+=map[index][j];
+                    }else{
+                        map[--index][j] = map[i][j];
+                        last = map[i][j];
+                    }
+                    i--;
+                    while(i>=0 && map[i][j]==0)
+                        i--;
+                }
+                for(let k=index-1;k>=0;k--)
+                    map[k][j] = 0;
+            }
+        }
+        function left(){
+            for(let i=0;i<4;i++){
+                var last = 0;
+                var j=0;
+                var index=-1;
+                while(j<4 && map[i][j]==0)
+                    j++;
+                while(j<4){
+                    if(map[i][j]==last){
+                        map[i][index]=2*map[i][j];
+                        last=0;
+                        zeros++;
+                        score+=map[i][index];
+                    }else{
+                        map[i][++index] = map[i][j];
+                        last = map[i][j];
+                    }
+                    j++;
+                    while(j<4 && map[i][j]==0)
+                        j++;
+                }
+                for(let k=index+1;k<4;k++)
+                    map[i][k] = 0;
+            }
+        }
+        function right(){
+            for(let i=0;i<4;i++){
+                var last = 0;
+                var j=3;
+                var index=4;
+                while(j>=0 && map[i][j]==0)
+                    j--;
+                while(j>=0){
+                    if(map[i][j]==last){
+                        map[i][index]=2*map[i][j];
+                        last=0;
+                        zeros++;
+                        score+=map[i][index];
+                    }else{
+                        map[i][--index] = map[i][j];
+                        last = map[i][j];
+                    }
+                    j--;
+                    while(j>=0 && map[i][j]==0)
+                        j--;
+                }
+                for(let k=index-1;k>=0;k--)
+                    map[i][k] = 0;
+            }
+        }
+        document.onkeydown = function(event){
+            switch(event.keyCode){
+                case 37:
+                    left();
+                    break;
+                case 38:
+                    up();
+                    break;
+                case 39:
+                    right();
+                    break;
+                case 40:
+                    down();
+                    break;
+                default:
+                    return;
+            }
+            generate();
+            draw();
+            document.getElementById("score").innerHTML="Score:"+String(score);
+        }
+        generate();
+        draw();
+
+    </script>
+</body>
+</html>

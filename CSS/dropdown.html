@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lisu</title>
+<style>
+    .dropdown{
+        background-color:#f1f1f1;
+        position:relative;
+    }
+    .hidden{
+        display:none;
+        position:absolute;
+        background-color:#f9f9f9;
+        width:100%;
+        overflow:auto;
+        z-index: 1;
+    }
+    .dropdown:hover .hidden{
+        display: block;
+    }
+    button{
+        display: block;
+        padding:16px;
+        font-size:16px;
+    }
+    a{
+        text-decoration:none;
+    }
+</style>
+</head>
+<body>
+<div class="dropdown">
+    <button class="button">下拉菜单</button>
+    <div class="hidden">
+        <a href="https://www.mzitu.com/">菜鸟教程1</a>
+        <a href="https://www.mzitu.com/">菜鸟教程2</a>
+        <a href="https://www.mzitu.com/">菜鸟教程3</a>
+    </div>
+</div>
+</body>
+</html>

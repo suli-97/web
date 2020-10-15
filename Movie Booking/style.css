@@ -1,0 +1,84 @@
+body{
+  	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height:100vh;
+	background-color:#242333;
+}
+label{
+	color:white;
+	margin-right:10px;
+}
+select{
+	appearance: none;
+	padding:5px 10px;
+	border-radius: 5px;
+	font-size:14px;
+}
+ul{
+	padding:5px 5px;
+	list-style-type: none;
+	background-color:#201F2E;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+li{
+	color:#444451;
+	margin:0 10px;
+	font-size:13px;
+}
+li .seat{
+	display:inline-block;
+}
+.seat{
+	margin:0px 3px;
+	width:14px;
+	height:12px;
+	background-color:#444451;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+.screen{
+	background-color: #fff;
+	height: 70px;
+	width: 100%;
+	margin: 15px 0;
+	transform: rotateX(-45deg);
+	box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+.theater .seat{
+	margin:3px 3px;
+}
+.seat.occupied{
+	background-color:white;
+}
+.seat.selected{
+	background-color:#6FEAF6;
+}
+.row{
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.seat:nth-of-type(2){
+	margin-right: 18px;
+}
+.seat:nth-last-of-type(2){
+	margin-left: 18px;
+}
+.seat:not(.occupied):hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
+.demo .seat:not(.occupied):hover {
+	cursor: default;
+	transform: scale(1);
+}
+p{
+	color:white;
+}
+span{
+	color:#6FEAF6;
+}
